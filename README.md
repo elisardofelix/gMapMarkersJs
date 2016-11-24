@@ -30,6 +30,7 @@ gMapMarkersJs is a js library that simplified the use of markers with Google Map
 </head>
 <body>
 
+<!-- Container div for show the map on html -->
 <div id="map_wrapper">
     <div id="map_canvas" class="mapping">
     </div>
