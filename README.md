@@ -13,7 +13,7 @@ gMapMarkersJs is a js library that simplified the use of markers with Google Map
 <!--First you need include the JQuery Lib  -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!--Add the lib gMapMarkersJs -->
-<script src="gMapMarkersJs.js"></script>
+<script src="//cdn.rawgit.com/elisardofelix/gMapMarkersJs/master/gMapMarkersJs.js"></script>
 
 <style type="text/css">
 
