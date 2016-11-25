@@ -45,6 +45,7 @@ gMapMarkersJs is a js library that simplified the use of markers with Google Map
 var mk = new mapsmarker('map_canvas',14,'roadmap');
 // add any markers with the method addMarker(lat,lon, 'Title', 'Text on Html or Plain that show when click on the marker')
 mk.addMarker(14.058324, 108.277199,'Vietnan','<h2>Vietnan</h2>');
+mk.addMarker(43.798329, -79.5079073,'Concord','Concord, Vaughan, ON, Canada');
 // at last the initializate method that needs to be pass to a varible named "initialize" with your Google Maps API Key
 var initialize = mk.initialize('YOUR GOOGLE MAPS API KEY');
 </script>
