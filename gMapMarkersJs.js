@@ -7,12 +7,12 @@ function mapsmarker(idmap, mapzoon, maptype) {
 };
 
 
-mapsmarker.prototype.addMarker = function (plon, plat, ptitle, ptext){
+mapsmarker.prototype.addMarker = function (plat, plon, ptitle, ptext){
 
       if(jQuery.isEmptyObject(this.markers))
-        this.markers = [{lon : plon, lat : plat, title : ptitle, text : ptext}];
+        this.markers = [{lat : plat, lon : plon, title : ptitle, text : ptext}];
       else
-        this.markers.push({lon : plon, lat : plat, title : ptitle, text : ptext});
+        this.markers.push({lat : plat, lon : plon, title : ptitle, text : ptext});
 };
 
 mapsmarker.prototype.initialize = function (key, markers = this.markers, idmap = this.idmap, mapzoon = this.mapzoon, maptype = this.maptype) {
@@ -40,7 +40,7 @@ mapsmarker.prototype.initialize = function (key, markers = this.markers, idmap =
                           
                           // Loop through our array of markers & place each one on the map  
                           for( i = 0;markers[i]; i++ ) {
-                              var position = new google.maps.LatLng(markers[i].lon, markers[i].lat);
+                              var position = new google.maps.LatLng(markers[i].lat, markers[i].lon);
                               bounds.extend(position);
                               marker = new google.maps.Marker({
                                   position: position,
