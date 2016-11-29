@@ -1,3 +1,6 @@
+var Gmarkers = [];
+var unique = false;
+
 function mapsmarker(idmap, mapzoon, maptype) {
 
         //Initialize the markers data container 
@@ -15,7 +18,12 @@ mapsmarker.prototype.addMarker = function (plat, plon, ptitle, ptext){
         this.markers.push({lat : plat, lon : plon, title : ptitle, text : ptext});
 };
 
-mapsmarker.prototype.initialize = function (key, markers = this.markers, idmap = this.idmap, mapzoon = this.mapzoon, maptype = this.maptype) {
+mapsmarker.prototype.initialize = function (key) {
+  //Only one parameter and better implementation.
+  var markers = this.markers;
+  var idmap   = this.idmap; 
+  var mapzoon = this.mapzoon;
+  var maptype = this.maptype;
 
   jQuery(function($) {
       // Asynchronously Load the map API 
