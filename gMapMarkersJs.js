@@ -34,7 +34,7 @@ mapsmarker.prototype.initialize = function (key) {
   jQuery(function($) {
       // Asynchronously Load the map API 
       var script = document.createElement('script');
-      script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize&key="+key;
+      script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize&key="+key;
       document.body.appendChild(script);
       });
 
