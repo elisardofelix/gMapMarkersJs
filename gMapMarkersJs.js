@@ -31,6 +31,7 @@ mapsmarker.prototype.initialize = function (key) {
   var mapzoom = this.mapzoom;
   var maptype = this.maptype;
   var pcenter = this.pcenter;
+  var selectable = this.selectable;
   if(jQuery.isEmptyObject(this.fun))
     var fun = function () {null;};
   else
