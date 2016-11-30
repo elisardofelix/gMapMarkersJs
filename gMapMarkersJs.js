@@ -30,6 +30,12 @@ mapsmarker.prototype.initialize = function (key) {
   var idmap   = this.idmap; 
   var mapzoom = this.mapzoom;
   var maptype = this.maptype;
+  var pcenter = this.pcenter;
+  if(jQuery.isEmptyObject(this.fun))
+    var fun = function () {null;};
+  else
+    var fun = this.fun; 
+  
 
   jQuery(function($) {
       // Asynchronously Load the map API 
