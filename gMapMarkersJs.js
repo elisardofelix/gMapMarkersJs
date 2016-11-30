@@ -20,6 +20,10 @@ mapsmarker.prototype.addMarker = function (plat, plon, ptitle, ptext){
         this.markers.push({lat : plat, lon : plon, title : ptitle, text : ptext});
 };
 
+mapsmarker.prototype.markerFunction = function (fun){
+  this.fun = fun;
+};
+
 mapsmarker.prototype.initialize = function (key) {
   //Only one parameter and better implementation.
   var markers = this.markers;
@@ -35,27 +39,31 @@ mapsmarker.prototype.initialize = function (key) {
       });
 
     return function () {
-                          var map;
+var map;
                           var bounds = new google.maps.LatLngBounds();
-                          if(move)
-                            var mapOptions = {
-                                zoom: mapzoom,
-                                mapTypeId: maptype
-                            };
-                          else
-                            var mapOptions = {
-                                mapTypeId: maptype
-                            };
-
+                          var mapOptions = {
+                              zoom : mapzoom,
+                              mapTypeId: maptype,
+                              center : {lat : pcenter.lat, lng : pcenter.lng }
+                          };
+                        
+      
                         // Display a map on the page
                           map = new google.maps.Map(document.getElementById(idmap), mapOptions);
                           map.setTilt(45);
                               
                           // Display multiple markers on a map
                           var infoWindow = new google.maps.InfoWindow(), marker, i;
+                          var until = -1;
                           
+                          if(selectable && markers !== 'undefined')
+                               until = 1;
+                          else
+                               until = markers.length;
+                          
+      
                           // Loop through our array of markers & place each one on the map  
-                          for( i = 0;markers[i]; i++ ) {
+                          for( i = 0; i < until; i++ ) {
                               var position = new google.maps.LatLng(markers[i].lat, markers[i].lon);
                               bounds.extend(position);
                               marker = new google.maps.Marker({
@@ -65,7 +73,7 @@ mapsmarker.prototype.initialize = function (key) {
                               });
                               
                               // Allow each marker to have an info window    
-                              google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
+                              google.maps.event.addListener(marker, 'click', (function(marker, i) {
                                   return function() {
                                       infoWindow.setContent(markers[i].text);
                                       infoWindow.open(map, marker);
@@ -73,14 +81,40 @@ mapsmarker.prototype.initialize = function (key) {
                               })(marker, i));
 
                               // Automatically center the map fitting all markers on the screen
+                            
                               map.fitBounds(bounds);
+                              Gmarkers.push(marker);
                           }
-
+                                
+                          
+                          
                           // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
                           var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-                              this.setZoom(mapzoon);
+                              this.setZoom(mapzoom);
+                            
                               google.maps.event.removeListener(boundsListener);
                           });
+                                     
+      
+                          if(selectable)
+                          {
+                            google.maps.event.addListener(map, 'click', function(event) {
+                                    
+                                    if(Gmarkers.length == 0)
+                                    {
+                                      marker = new google.maps.Marker({
+                                              position: event.latLng,
+                                              map: map
+                                          });
+                                    Gmarkers.push(marker);
+                                    }
+                                    else
+                                      Gmarkers[0].setPosition(event.latLng);
+
+                                    fun();
+                                              
+                             });   
+                         }
 
                   };
 
