@@ -56,9 +56,9 @@ mapsmarker.prototype.initialize = function (key) {
                           var infoWindow = new google.maps.InfoWindow(), marker, i;
                           var until = -1;
                           
-                          if(selectable && markers !== 'undefined')
+                          if(selectable && jQuery.isEmptyObject(markers) == false )
                                until = 1;
-                          else
+                          else if(!selectable)
                                until = markers.length;
                           
       
