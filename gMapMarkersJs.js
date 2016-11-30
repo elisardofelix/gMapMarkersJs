@@ -39,7 +39,7 @@ mapsmarker.prototype.initialize = function (key) {
       });
 
     return function () {
-var map;
+                          var map;
                           var bounds = new google.maps.LatLngBounds();
                           var mapOptions = {
                               zoom : mapzoom,
