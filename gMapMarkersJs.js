@@ -11,6 +11,9 @@ function mapsmarker(idmap, mapzoom, maptype, selectable = false, pcenter = {lat 
         this.selectable = selectable;
 };
 
+mapsmarker.prototype.markerFunction = function (fun){
+  this.fun = fun;
+};
 
 mapsmarker.prototype.addMarker = function (plat, plon, ptitle, ptext){
 

@@ -5,6 +5,12 @@ gMapMarkersJs is a js library that simplified the use of markers with Google Map
     -Requeriments
         +JQuery
 
+##CDN Script Tag
+
+```
+<script src="https://cdn.rawgit.com/elisardofelix/gMapMarkersJs/1.0/gMapMarkersJs.js"></script>
+```
+
 # Example
 ```html
 <html>
@@ -40,7 +46,7 @@ gMapMarkersJs is a js library that simplified the use of markers with Google Map
 <script type="text/javascript">
 /*
     Instance the new object with any name and set the parameters in the creation like:
-    new mapsmarker('id of div html object', Zoom number 1 - 20 ,'type of map [roadmap, satellite, terrain or hybrid]');
+    new mapsmarker('id of div html object', Zoom number 1 - 20 (Greater number and more magnification),'type of map [roadmap, satellite, terrain or hybrid]');
 */
 var mk = new mapsmarker('map_canvas',14,'roadmap');
 // add any markers with the method addMarker(lat,lon, 'Title', 'Text on Html or Plain that show when click on the marker')
