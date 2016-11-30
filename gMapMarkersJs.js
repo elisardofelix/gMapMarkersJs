@@ -11,10 +11,6 @@ function mapsmarker(idmap, mapzoom, maptype, selectable = false, pcenter = {lat 
         this.selectable = selectable;
 };
 
-mapsmarker.prototype.markerFunction = function (fun){
-  this.fun = fun;
-};
-
 mapsmarker.prototype.addMarker = function (plat, plon, ptitle, ptext){
 
       if(jQuery.isEmptyObject(this.markers))
@@ -35,7 +31,7 @@ mapsmarker.prototype.initialize = function (key) {
   var maptype = this.maptype;
   var pcenter = this.pcenter;
   var selectable = this.selectable;
-  if(jQuery.isEmptyObject(this.fun))
+  if(typeof this.fun === 'undefined')
     var fun = function () {null;};
   else
     var fun = this.fun; 
