@@ -1,12 +1,14 @@
 var Gmarkers = [];
 var unique = false;
 
-function mapsmarker(idmap, mapzoon, maptype) {
+function mapsmarker(idmap, mapzoom, maptype, selectable = false, pcenter = {lat : 18.48117202, lng : -69.92138672}) {
 
         //Initialize the markers data container 
         this.idmap = idmap;
-        this.mapzoon = mapzoon;
+        this.mapzoom = mapzoom;
         this.maptype = maptype;
+        this.pcenter = pcenter;
+        this.selectable = selectable;
 };
 
 
@@ -22,7 +24,7 @@ mapsmarker.prototype.initialize = function (key) {
   //Only one parameter and better implementation.
   var markers = this.markers;
   var idmap   = this.idmap; 
-  var mapzoon = this.mapzoon;
+  var mapzoom = this.mapzoom;
   var maptype = this.maptype;
 
   jQuery(function($) {
@@ -35,9 +37,15 @@ mapsmarker.prototype.initialize = function (key) {
     return function () {
                           var map;
                           var bounds = new google.maps.LatLngBounds();
-                          var mapOptions = {
-                              mapTypeId: maptype
-                          };
+                          if(move)
+                            var mapOptions = {
+                                zoom: mapzoom,
+                                mapTypeId: maptype
+                            };
+                          else
+                            var mapOptions = {
+                                mapTypeId: maptype
+                            };
 
                         // Display a map on the page
                           map = new google.maps.Map(document.getElementById(idmap), mapOptions);
@@ -57,7 +65,7 @@ mapsmarker.prototype.initialize = function (key) {
                               });
                               
                               // Allow each marker to have an info window    
-                              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                              google.maps.event.addListener(marker, 'dblclick', (function(marker, i) {
                                   return function() {
                                       infoWindow.setContent(markers[i].text);
                                       infoWindow.open(map, marker);
