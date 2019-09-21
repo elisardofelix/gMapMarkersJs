@@ -16,19 +16,18 @@ const mapsmarker = (
   this.maptype = maptype;
   this.pcenter = pcenter;
   this.selectable = selectable;
+  this.markers = [];
 };
 
-mapsmarker.prototype.addMarker = function(plat, plon, ptitle, ptext) {
-  if (jQuery.isEmptyObject(this.markers))
-    this.markers = [{ lat: plat, lon: plon, title: ptitle, text: ptext }];
-  else this.markers.push({ lat: plat, lon: plon, title: ptitle, text: ptext });
+mapsmarker.prototype.addMarker = (plat, plon, ptitle, ptext) => {
+  this.markers.push({ lat: plat, lon: plon, title: ptitle, text: ptext });
 };
 
-mapsmarker.prototype.markerFunction = function(fun) {
+mapsmarker.prototype.markerFunction = fun => {
   this.fun = fun;
 };
 
-mapsmarker.prototype.initialize = function(key) {
+mapsmarker.prototype.initialize = key => {
   //Only one parameter and better implementation.
   var markers = this.markers;
   var idmap = this.idmap;
@@ -51,7 +50,7 @@ mapsmarker.prototype.initialize = function(key) {
     document.body.appendChild(script);
   });
 
-  return function() {
+  return () => {
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
