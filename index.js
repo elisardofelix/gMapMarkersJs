@@ -1,15 +1,25 @@
-import jQuery from "jquery";
+var jQuery = require("jquery");
 
 var Gmarkers = [];
 var unique = false;
 
-const mapsmarker = (
+var mapsmarker = function(
   idmap,
   mapzoom,
   maptype,
-  selectable = false,
-  pcenter = { lat: 18.48117202, lng: -69.92138672 }
-) => {
+  key,
+  markers,
+  selectable,
+  pcenter
+) {
+  markers = typeof markers !== "undefined" ? markers : [];
+  key = typeof key !== "undefined" ? key : "";
+  selectable = typeof selectable !== "undefined" ? selectable : false;
+  pcenter =
+    typeof pcenter !== "undefined"
+      ? pcenter
+      : { lat: 18.48117202, lng: -69.92138672 };
+
   //Initialize the markers data container
   this.idmap = idmap;
   this.mapzoom = mapzoom;
@@ -17,17 +27,22 @@ const mapsmarker = (
   this.pcenter = pcenter;
   this.selectable = selectable;
   this.markers = [];
+
+  if (markers.length > 0) mapsmarker.initialize(key, markers);
 };
 
-mapsmarker.prototype.addMarker = (plat, plon, ptitle, ptext) => {
+mapsmarker.prototype.addMarker = function(plat, plon, ptitle, ptext) {
   this.markers.push({ lat: plat, lon: plon, title: ptitle, text: ptext });
 };
 
-mapsmarker.prototype.markerFunction = fun => {
+mapsmarker.prototype.markerFunction = function(fun) {
   this.fun = fun;
 };
 
-mapsmarker.prototype.initialize = key => {
+mapsmarker.prototype.initialize = function(key, pmarkers) {
+  key = typeof key !== "undefined" ? key : "";
+  pmarkers = typeof pmarkers !== "undefined" ? pmarkers : [];
+
   //Only one parameter and better implementation.
   var markers = this.markers;
   var idmap = this.idmap;
@@ -41,16 +56,16 @@ mapsmarker.prototype.initialize = key => {
     };
   else var fun = this.fun;
 
-  jQuery(function($) {
+  jQuery(function(jQuery) {
     // Asynchronously Load the map API
     var script = document.createElement("script");
     script.src =
-      "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize&key=" +
+      "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap&key=" +
       key;
     document.body.appendChild(script);
   });
 
-  return () => {
+  global.initMap = function() {
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
@@ -58,7 +73,6 @@ mapsmarker.prototype.initialize = key => {
       mapTypeId: maptype,
       center: { lat: pcenter.lat, lng: pcenter.lng }
     };
-
     // Display a map on the page
     map = new google.maps.Map(document.getElementById(idmap), mapOptions);
     map.setTilt(45);
@@ -127,4 +141,4 @@ mapsmarker.prototype.initialize = key => {
   };
 };
 
-export default mapsmarker;
+module.exports = mapsmarker;
