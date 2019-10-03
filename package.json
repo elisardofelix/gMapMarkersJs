@@ -1,0 +1,27 @@
+{
+  "name": "gmapmarkersjs",
+  "version": "1.3.0",
+  "description": "It allows for creating maps with customizing markers in a really easy way.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elisardofelix/gMapMarkersJs.git"
+  },
+  "keywords": [
+    "Google",
+    "Maps",
+    "Markers"
+  ],
+  "author": "Elisardo Felix Vasquez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elisardofelix/gMapMarkersJs/issues"
+  },
+  "homepage": "https://github.com/elisardofelix/gMapMarkersJs#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
