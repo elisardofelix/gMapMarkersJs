@@ -1,7 +1,7 @@
 {
   "name": "gmapmarkersjs",
   "version": "1.3.0",
-  "description": "Allows to create maps with customize markers in a really easy way.",
+  "description": "It allows for creating maps with customizing markers in a really easy way.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
