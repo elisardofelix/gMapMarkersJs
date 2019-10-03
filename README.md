@@ -1,15 +1,15 @@
-# gMapMarkersJs
+# gMapMarkersJs [![NPM version][npm-image]][npm-url]
 
 gMapMarkersJs is a js library that simplified the use of markers with Google Maps API for embed maps inside your site.
 
-# How to Install
+## How to Install
 
 In your project folder just simply type:
-`npm install myjspolyfills`
+`npm install gmapmarkersjs`
 
-# How to Use
+## How to Use
 
-Just follow the following example:
+Just follow the instructions in the following example:
 
 ```javascript
 //Import the library
@@ -33,3 +33,14 @@ var mk = new mapsmarker(
 mk.addMarker(14.058324, 108.277199, "Vietnan", "<h2>Vietnan</h2>");
 mk.addMarker(43.798329, -79.5079073, "Concord", "Concord, Vaughan, ON, Canada");
 ```
+
+## Contribute
+
+Let me know if you have any suggestion about what to improve and feel free to send me any pull request with some new feature or fix I checked and let you know once I reviewed.
+
+## License
+
+[MIT](LICENSE)
+
+[npm-url]: https://npmjs.org/package/gmapmarkersjs
+[npm-image]: http://img.shields.io/npm/v/gmapmarkersjs.svg
