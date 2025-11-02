@@ -18,7 +18,12 @@ let mapsmarker = require("gmapmarkersjs");
 /* 
 Instance the new object with any name and set the parameters in the creation like:
 
-new mapsmarker('id of div html object', Zoom number 1 - 20 (Greater number and more magnification),'type of map [roadmap, satellite, terrain or hybrid]', 'YOUR GOOGLE MAPS API KEY');
+new mapsmarker(
+                'id of div html object',
+                Zoom number 1 - 20 (Greater number and more magnification),
+                'type of map [roadmap, satellite, terrain or hybrid]',
+                'YOUR GOOGLE MAPS API KEY'
+);
 
 */
 
